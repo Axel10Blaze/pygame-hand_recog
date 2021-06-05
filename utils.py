@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 import time
 
+
 mphands = mp.solutions.hands
 hands = mphands.Hands()
 mpDraw = mp.solutions.drawing_utils
@@ -29,7 +30,8 @@ def find_position(img, hand=0, draw=True):
                     cx, cy = int(lm.x * w), int(lm.y * h)
                     lmlist.append([id, cx, cy])
                     if draw:
-                        cv2.circle(img, (cx, cy), 6, (255, 0, 0), cv2.FILLED)
+                        if id == 8:
+                            cv2.circle(img, (cx, cy), 6, (255, 0, 0), cv2.FILLED)
     return lmlist
 
 
@@ -39,6 +41,10 @@ def index_tip_pos(lmlist):
             if id == 8:
                 position = pos[1:3]
                 return position
+
+
+
+
 
 
 
